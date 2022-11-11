@@ -22,18 +22,16 @@ public class MainApplication {
             String inputBinFileName = path + args[0];
             String outputjsonFileName = path + args[1];
 
-            FileInputStream data1file = new FileInputStream(new File(String.valueOf(inputBinFileName)));
+            FileInputStream data1file = new FileInputStream((inputBinFileName));
             byte[] bytesForBuffer = data1file.readAllBytes();
             data1file.close();
             ByteBuffer buffer = ByteBuffer.wrap(bytesForBuffer);
             List<TLV> result = TLVParser.parse(buffer);
             TlvToDataConverter tlvToDataConverter = new TlvToDataConverter();
             Data data = tlvToDataConverter.convert(result);
-            ObjectMapper objectMapper = new ObjectMapper();
-            String string = objectMapper.writeValueAsString(data);
-
-            FileOutputStream fileOutputStream = new FileOutputStream(dataPath + "/" + args[1]);
-            fileOutputStream.write(string.getBytes(StandardCharsets.UTF_8));
+            byte[] bytes = new ObjectMapper().writeValueAsBytes(data);
+            FileOutputStream fileOutputStream = new FileOutputStream(outputjsonFileName);
+            fileOutputStream.write(bytes);
             fileOutputStream.flush();
             fileOutputStream.close();
         } catch (Exception e) {

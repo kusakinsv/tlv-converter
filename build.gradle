@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'ru.one.converter'
-version '0.0.1-SNAPSHOT'
+version '1.0.0'
 
 repositories {
     mavenCentral()
@@ -17,8 +17,6 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-
-
 }
 
 test {
@@ -37,7 +35,8 @@ jar {
     archiveBaseName = 'tlv-converter'
 
     manifest {
-        attributes 'Main-Class': 'ru.one.converter.MainApplication'  }
+        attributes 'Main-Class': 'ru.one.converter.MainApplication'
+    }
 
     dependsOn configurations.runtimeClasspath
 
