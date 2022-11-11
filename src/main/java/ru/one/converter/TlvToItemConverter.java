@@ -1,7 +1,9 @@
-package ru.one.converter.model;
+package ru.one.converter;
+
+import ru.one.converter.model.Item;
+import ru.one.converter.model.TLV;
 
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TlvToItemConverter {
