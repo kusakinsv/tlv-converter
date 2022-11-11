@@ -1,7 +1,7 @@
 package ru.one.converter;
 
-import ru.one.converter.model.Item;
-import ru.one.converter.model.TLV;
+import ru.one.converter.models.Item;
+import ru.one.converter.models.TLV;
 
 import java.nio.charset.Charset;
 import java.util.List;

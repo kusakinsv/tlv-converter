@@ -1,6 +1,6 @@
 package ru.one.converter;
 
-import ru.one.converter.model.TLV;
+import ru.one.converter.models.TLV;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;

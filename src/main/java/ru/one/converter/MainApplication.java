@@ -1,8 +1,8 @@
 package ru.one.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ru.one.converter.model.Data;
-import ru.one.converter.model.TLV;
+import ru.one.converter.models.Data;
+import ru.one.converter.models.TLV;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,8 +1,8 @@
 package ru.one.converter;
 
-import ru.one.converter.model.Data;
-import ru.one.converter.model.Item;
-import ru.one.converter.model.TLV;
+import ru.one.converter.models.Data;
+import ru.one.converter.models.Item;
+import ru.one.converter.models.TLV;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
