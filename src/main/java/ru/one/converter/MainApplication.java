@@ -1,14 +1,15 @@
 package ru.one.converter;
 
-import ru.one.converter.model.Converter;
+import ru.one.converter.model.Data;
+import ru.one.converter.model.TlvToDataConverter;
 import ru.one.converter.model.TLV;
+import ru.one.converter.model.TLVParser;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.nio.ByteBuffer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,42 +27,15 @@ public class MainApplication {
             byte[] bytesForBuffer = data1file.readAllBytes();
 
             ByteBuffer buffer = ByteBuffer.wrap(bytesForBuffer);
-            List<TLV> result = parse(buffer);
-            System.out.println(result.toString());
-            Converter converter = new Converter();
-            converter.convert(result);
-
-
-
+            List<TLV> result = TLVParser.parse(buffer);
+            TlvToDataConverter tlvToDataConverter = new TlvToDataConverter();
+            Data data = tlvToDataConverter.convert(result);
+            System.out.println(data);
 
         } catch (Exception e) {
             System.out.println("Ошибка");
             e.printStackTrace();
         }
-    }
-
-
-    public static List<TLV> parse(ByteBuffer bb) throws Exception {
-        List<TLV> TLVList = new ArrayList<>();
-        try {
-            while (bb.remaining() > 0) {
-                byte tag = bb.get();
-                bb.get();
-                if(tag == 0x00)
-                    continue;
-                int length = bb.get();
-                bb.get();
-                byte[] value = new byte[length];
-                bb.get(value, 0, length);
-                TLV TLV = new TLV();
-                TLV.setTagType(tag);
-                TLV.setValue(value);
-                TLVList.add(TLV);
-            }
-        } catch (IndexOutOfBoundsException e) {
-            throw new Exception("Не читаемая TLV часть: " + bb.toString() + ".", e);
-        }
-        return TLVList;
     }
 
 }

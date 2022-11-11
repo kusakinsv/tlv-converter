@@ -1,12 +1,15 @@
 package ru.one.converter.model;
 
-import java.math.BigDecimal;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Item {
     String name;
-    BigDecimal price;
-    Integer quantity;
-    BigDecimal sum;
+    long price;
+    double quantity;
+    long sum;
 
     @Override
     public String toString() {
