@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TlvToItemConverter {
 
-    public Item convertTLVtoItem(List<TLV> tlvList) {
+    public Item convertTlvToItem(List<TLV> tlvList) {
             Item item = new Item();
             for (TLV tlv : tlvList) {
                 if (tlv.getTagType() == 11){
@@ -20,7 +20,7 @@ public class TlvToItemConverter {
                     item.setPrice(littleEndianPrice);
                 }
                 if (tlv.getTagType() == 13){
-                    double quantity = Utils.bytesToFVLN(tlv.getValue());
+                    double quantity = Utils.fvlnInBytesToDouble(tlv.getValue());
                     item.setQuantity(quantity);
                 }
                 if (tlv.getTagType() == 14){

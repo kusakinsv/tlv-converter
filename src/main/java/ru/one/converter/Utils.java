@@ -13,7 +13,7 @@ public class Utils {
         return value;
     }
 
-    public static double bytesToFVLN(byte[] bytes) {
+    public static double fvlnInBytesToDouble(byte[] bytes) {
         byte[] lengthBytes = new byte[1];
         lengthBytes[0] = bytes[0];
         int length = bytesToIntLE(lengthBytes);
@@ -21,12 +21,6 @@ public class Utils {
         int amount = bytesToIntLE(amountBytes);
         double x = Math.pow(10.0, length);
         return amount/x;
-    }
-
-    public static byte[] floatToByteArray(float value) {
-        int intBits =  Float.floatToIntBits(value);
-        return new byte[] {
-                (byte) (intBits >> 24), (byte) (intBits >> 16), (byte) (intBits >> 8), (byte) (intBits) };
     }
 
 }

@@ -16,7 +16,7 @@ import java.util.List;
 public class TlvToDataConverter {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss").withZone(ZoneId.of("UTC"));
 
-    public Data convert(List<TLV> tlvList) throws Exception {
+    public Data convertTlvToData(List<TLV> tlvList) throws Exception {
         Data data = new Data();
         List<Item> result = new ArrayList<>();
         for (TLV tlv : tlvList) {
@@ -26,7 +26,7 @@ public class TlvToDataConverter {
                 data.setDateTime(localDateTime.toString());
             }
             if (tlv.getTagType() == 2){
-                long littleEndian = (long)Utils.bytesToIntLE(tlv.getValue());
+                long littleEndian = Utils.bytesToIntLE(tlv.getValue());
                 data.setOrderNumber(littleEndian);
             }
             if (tlv.getTagType() == 3){
@@ -36,7 +36,7 @@ public class TlvToDataConverter {
             if (tlv.getTagType() == 4){
             List<TLV> tlvItemList = TLVParser.parse(ByteBuffer.wrap(tlv.getValue()));
             TlvToItemConverter tlvToItemConverter = new TlvToItemConverter();
-            result.add(tlvToItemConverter.convertTLVtoItem(tlvItemList));
+            result.add(tlvToItemConverter.convertTlvToItem(tlvItemList));
             }
         }
         data.setItems(result);

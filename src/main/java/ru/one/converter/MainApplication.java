@@ -4,11 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.one.converter.models.Data;
 import ru.one.converter.models.TLV;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -25,11 +23,13 @@ public class MainApplication {
             FileInputStream data1file = new FileInputStream((inputBinFileName));
             byte[] bytesForBuffer = data1file.readAllBytes();
             data1file.close();
+
             ByteBuffer buffer = ByteBuffer.wrap(bytesForBuffer);
             List<TLV> result = TLVParser.parse(buffer);
             TlvToDataConverter tlvToDataConverter = new TlvToDataConverter();
-            Data data = tlvToDataConverter.convert(result);
+            Data data = tlvToDataConverter.convertTlvToData(result);
             byte[] bytes = new ObjectMapper().writeValueAsBytes(data);
+
             FileOutputStream fileOutputStream = new FileOutputStream(outputjsonFileName);
             fileOutputStream.write(bytes);
             fileOutputStream.flush();
