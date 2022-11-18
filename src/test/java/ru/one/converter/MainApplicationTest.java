@@ -1,6 +1,5 @@
 package ru.one.converter;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -12,8 +11,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 class MainApplicationTest {
@@ -65,7 +62,6 @@ class MainApplicationTest {
         double value = Utils.fvlnInBytesToDouble(itemTLV.get(2).getValue());
         Assertions.assertEquals(2.0, value);
     }
-
 
     @BeforeAll
     public static void fillBuffer() throws IOException {
