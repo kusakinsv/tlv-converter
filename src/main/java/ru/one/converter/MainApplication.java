@@ -3,6 +3,8 @@ package ru.one.converter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.one.converter.models.Data;
 import ru.one.converter.models.TLV;
+//import ru.one.converter.models.Data;
+//import ru.one.converter.models.TLV;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -25,7 +27,7 @@ public class MainApplication {
             data1file.close();
 
             ByteBuffer buffer = ByteBuffer.wrap(bytesForBuffer);
-            List<TLV> result = TLVParser.parse(buffer);
+            List<TLV> result = TlvParser.parseTlv(buffer);
             TlvToDataConverter tlvToDataConverter = new TlvToDataConverter();
             Data data = tlvToDataConverter.convertTlvToData(result);
             byte[] bytes = new ObjectMapper().writeValueAsBytes(data);

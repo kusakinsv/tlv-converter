@@ -21,18 +21,23 @@ test {
     useJUnitPlatform()
 }
 
+
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
 tasks.withType(Test) {
     systemProperty "file.encoding", "UTF-8"
+
+}
+
+tasks.withType(Jar) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 jar {
     archiveBaseName = 'tlv-converter'
 
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     manifest {
         attributes 'Main-Class': 'ru.one.converter.MainApplication'

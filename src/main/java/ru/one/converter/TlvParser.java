@@ -6,8 +6,8 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TLVParser {
-    public static List<TLV> parse(ByteBuffer bb) throws Exception {
+public class TlvParser {
+    public static List<TLV> parseTlv(ByteBuffer bb) throws Exception {
         List<TLV> TLVList = new ArrayList<>();
         try {
             while (bb.remaining() > 0) {
@@ -24,7 +24,7 @@ public class TLVParser {
                 TLV.setValue(value);
                 TLVList.add(TLV);
             }
-        } catch (IndexOutOfBoundsException e) {
+        } catch (Exception e) {
             throw new Exception("Не читаемая TLV часть: " + bb.toString() + ".", e);
         }
         return TLVList;

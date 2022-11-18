@@ -34,7 +34,7 @@ public class TlvToDataConverter {
                 data.setCustomerName(customerName);
             }
             if (tlv.getTagType() == 4){
-            List<TLV> tlvItemList = TLVParser.parse(ByteBuffer.wrap(tlv.getValue()));
+            List<TLV> tlvItemList = TlvParser.parseTlv(ByteBuffer.wrap(tlv.getValue()));
             TlvToItemConverter tlvToItemConverter = new TlvToItemConverter();
             result.add(tlvToItemConverter.convertTlvToItem(tlvItemList));
             }
