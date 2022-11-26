@@ -1,4 +1,4 @@
-package ru.one.converter;
+package ru.one.converter.utils;
 
 import java.util.Arrays;
 
