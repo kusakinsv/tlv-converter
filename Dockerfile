@@ -3,4 +3,4 @@ ARG JAR_FILE=build/libs/tlv-converter-1.0.0.jar
 WORKDIR /opt/app  
 COPY ${JAR_FILE} tlv-converter.jar
 ENTRYPOINT ["java","-jar","web-crud.jar"]
-EXPOSE 8220
+EXPOSE 8280

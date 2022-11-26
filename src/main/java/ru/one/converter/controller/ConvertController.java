@@ -18,9 +18,9 @@ public class ConvertController {
     private ConvertService convertService;
 
     @PostMapping(path = "convert", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-        public ResponseEntity<?> multiUploadFileModel(@RequestPart(value = "file", required = true) byte[] bytes) {
+        public ResponseEntity<?> multiUploadFileModel(@RequestPart(value = "file", required = true) MultipartFile bytes) {
             try {
-                JsonNode jsonString = convertService.convert(bytes);
+                JsonNode jsonString = convertService.convert(bytes.getBytes());
                 return ResponseEntity.accepted().body(jsonString);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
