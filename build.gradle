@@ -1,4 +1,6 @@
 plugins {
+    id 'org.springframework.boot' version '2.6.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
@@ -14,6 +16,7 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.13'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.7.5'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.5'
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
@@ -37,19 +40,4 @@ tasks.withType(Test) {
 
 tasks.withType(Jar) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
-jar {
-    archiveBaseName = 'tlv-converter'
-
-
-    manifest {
-        attributes 'Main-Class': 'ru.one.converter.MainApplication'
-    }
-
-    dependsOn configurations.runtimeClasspath
-
-    from {
-        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
-    }
 }

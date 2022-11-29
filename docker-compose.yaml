@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+
+  web-crud-pg:
+    image: postgres:13.3
+    container_name: "web-crud-pg"
+    restart: always
+    environment:
+      POSTGRES_DB: "web-crud"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5400:5432"
+    volumes:
+      - /var/lib/postgresql/data
+    networks:
+      - crud
+
+  web-crud-app:
+    image: web-crud-image
+    container_name: "web-crud-app"
+    ports:
+      - "8282:8282"
+    networks:
+      - crud
+
+  web-crud-converter:
+    image: tlv-converter
+    container_name: "web-crud-converter"
+    ports:
+      - "8280:8280"
+    networks:
+      - crud
+
+networks:
+  crud:
+   driver: bridge
+   ipam:
+     config:
+       - subnet: 192.168.220.0/24
